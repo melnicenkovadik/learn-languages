@@ -3,13 +3,12 @@
     <ul>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
-      <!-- Add more links as needed -->
     </ul>
   </nav>
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import './nav.scss';
 
 const isMobile = ref(false);
