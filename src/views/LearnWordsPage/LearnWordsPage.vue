@@ -1,15 +1,19 @@
 // src/views/LearnWordsPage.vue
 <template>
   <div class="learn-words-page">
-    <h2>Learn Words</h2>
+    <div class="learn-words-page__header">
+      <BackBtn @click="clearSelectedCategory" v-if="selectedCategory"/>
+      <h2>Learn Words</h2>
+    </div>
     <ul v-if="categories.length && !selectedCategory">
-      <li v-for="category in categories" :key="category.value">
-        <CardC>
-          <Button variant="primary" size="large" @click="selectedCategory = category.value">{{ category.label }}</Button>
-        </CardC>
-      </li>
+        <li v-for="category in categories" :key="category.value">
+          <Button variant="primary" size="large" @click="selectedCategory = category.value">{{
+              category.label
+            }}
+          </Button>
+        </li>
     </ul>
-    <BackBtn @click="clearSelectedCategory" v-if="selectedCategory"/>
+
     <div v-if="selectedWords">
       <WordDisplay :words="selectedWords"/>
     </div>
@@ -25,7 +29,6 @@ import categories from '@/common/categories.js';
 import {ref, computed} from 'vue';
 
 import './LearnWordsPage.scss';
-import CardC from "@/components/ui/Card.vue";
 
 const selectedCategory = ref('');
 

@@ -1,12 +1,16 @@
 <!-- src/components/WordDisplay.vue -->
 <template>
-  <div v-if="currentWord">
-    <p>{{ currentWord.en }} - {{ currentWord.it }} - {{ currentWord.ru }}</p>
-    <Button variant="primary" size="large" @click="markAsLearned">Выучил</Button>
-  </div>
-  <div v-else>
-    <p>Вы выучили все слова!</p>
-  </div>
+ <div class="word-display">
+   <div v-if="currentWord">
+      <p> 🇺🇸 {{ currentWord.en }}</p>
+      <p> 🇮🇹 {{ currentWord.it }}</p>
+      <p> 🇷🇺 {{ currentWord.ru }}</p>
+     <Button variant="primary" size="large" @click="markAsLearned">Выучил</Button>
+   </div>
+   <div v-else>
+     <p>Вы выучили все слова!</p>
+   </div>
+ </div>
 </template>
 
 <script setup>

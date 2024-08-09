@@ -14,16 +14,21 @@
     list-style: none;
     padding: 0;
     margin: 0;
-
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
     li {
-      margin-bottom: 15px;
-      padding: 10px;
+      padding: 20px;
       background-color: $card-bg-color;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
 
       button {
         background-color: $button-bg-color;
@@ -36,6 +41,10 @@
         &:hover {
           background-color: darken($button-bg-color, 10%);
         }
+      }
+      p {
+        margin: 0;
+        font-size: 1.5rem;
       }
     }
   }

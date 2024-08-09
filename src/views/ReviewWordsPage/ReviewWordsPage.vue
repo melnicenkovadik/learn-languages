@@ -4,7 +4,9 @@
     <h2>Review Learned Words</h2>
     <ul v-if="learnedWords.length">
       <li v-for="(word, index) in learnedWords" :key="word.en">
-        {{ word.en }} - {{ word.it }} - {{ word.ru }}
+        <p> 🇺🇸 {{ word.en }}</p>
+        <p> 🇮🇹 {{ word.it }}</p>
+        <p> 🇷🇺 {{ word.ru }}</p>
         <Button variant="secondary" size="medium" @click="removeWord(index)">Удалить</Button>
       </li>
     </ul>

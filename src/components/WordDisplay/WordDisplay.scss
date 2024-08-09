@@ -1,14 +1,13 @@
 @import '@/styles/variables.scss';
 
 .word-display {
-  padding: 20px;
+  padding: 5px 20px;
   background-color: $background-color; /* Основной фон */
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
   p {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
     color: $primary-text-color;
   }
 
