@@ -2,16 +2,26 @@
 <template>
   <div class="learn-words-page">
     <div class="learn-words-page__header">
-      <BackBtn @click="clearSelectedCategory" v-if="selectedCategory"/>
-      <h2>Learn Words</h2>
+      <BackBtn :onClick="clearSelectedCategory" v-if="selectedCategory"/>
+      <h2>
+        {{
+          selectedCategory
+              ? `Категория: ${
+                  categories.find(cat => cat.value === selectedCategory).label
+              }`
+              : 'Выберите категорию'
+        }}
+      </h2>
     </div>
     <ul v-if="categories.length && !selectedCategory">
-        <li v-for="category in categories" :key="category.value">
-          <Button variant="primary" size="large" @click="selectedCategory = category.value">{{
-              category.label
-            }}
-          </Button>
-        </li>
+      <li v-for="category in categories" :key="category.value">
+        <Button
+            variant="primary"
+            size="large"
+            @click="selectedCategory = category.value">
+          {{ category.label }}
+        </Button>
+      </li>
     </ul>
 
     <div v-if="selectedWords">

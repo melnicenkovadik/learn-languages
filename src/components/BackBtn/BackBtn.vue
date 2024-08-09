@@ -7,19 +7,24 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-import './BackBtn.scss';
+import {defineProps} from 'vue';
 
-// Определяем пропсы
+// Определяем пропсы, которые ожидает компонент
 const props = defineProps({
   onClick: {
     type: Function,
     required: true
   }
-})
+});
 
-// Локальная функция для обработки клика
-const handleClick = () => {
-  props.onClick()
+// Внутренняя функция для обработки клика
+function handleClick() {
+  props.onClick(); // Вызываем переданную функцию при клике
 }
 </script>
+
+<style scoped>
+.back-button {
+  cursor: pointer; /* курсор будет показывать, что элемент кликабельный */
+}
+</style>

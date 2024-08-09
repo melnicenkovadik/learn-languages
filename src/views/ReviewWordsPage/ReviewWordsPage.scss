@@ -20,6 +20,7 @@
     @media (max-width: 768px) {
       flex-direction: column;
     }
+
     li {
       padding: 20px;
       background-color: $card-bg-color;
@@ -42,6 +43,7 @@
           background-color: darken($button-bg-color, 10%);
         }
       }
+
       p {
         margin: 0;
         font-size: 1.5rem;

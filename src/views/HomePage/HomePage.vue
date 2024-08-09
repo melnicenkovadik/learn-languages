@@ -1,7 +1,7 @@
 <template>
   <div class="home-page">
-    <h2>Home</h2>
-    <p>Welcome to the home page of My PWA App!</p>
+    <h2>Главная</h2>
+    <p>Главная ещё не придумана!</p>
   </div>
 </template>
 

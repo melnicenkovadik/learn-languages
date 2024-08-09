@@ -1,15 +1,21 @@
 <template>
   <nav :class="['nav', { 'nav--mobile': isMobile }]">
     <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/learn-words">Learn</router-link></li>
-      <li><router-link to="/review-words">Review</router-link></li>
+      <li>
+        <router-link to="/">Главная</router-link>
+      </li>
+      <li>
+        <router-link to="/learn-words">Учить слова</router-link>
+      </li>
+      <li>
+        <router-link to="/review-words">Повторение</router-link>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 import './nav.scss';
 
 const isMobile = ref(false);

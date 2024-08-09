@@ -1,23 +1,29 @@
 <!-- src/components/WordDisplay.vue -->
 <template>
- <div class="word-display">
-   <div v-if="currentWord">
-      <p> 🇺🇸 {{ currentWord.en }}</p>
-      <p> 🇮🇹 {{ currentWord.it }}</p>
-      <p> 🇷🇺 {{ currentWord.ru }}</p>
-     <Button variant="primary" size="large" @click="markAsLearned">Выучил</Button>
-   </div>
-   <div v-else>
-     <p>Вы выучили все слова!</p>
-   </div>
- </div>
+  <div class="word-display">
+    <div v-if="currentWord && !isLoading">
+      <transition name="fade" mode="out-in">
+        <div key="currentWord.en">
+          <p> 🇺🇸 {{ currentWord.en }}</p>
+          <p> 🇮🇹 {{ currentWord.it }}</p>
+          <p> 🇷🇺 {{ currentWord.ru }}</p>
+        </div>
+      </transition>
+      <Button variant="primary" size="large" @click="handleMarkAsLearned">Выучил</Button>
+    </div>
+    <div v-else-if="!currentWord && !isLoading">
+      <p>Вы выучили все слова!</p>
+    </div>
+    <div v-if="isLoading" class="loader">Загрузка...</div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { defineProps } from 'vue'
+import {ref, watchEffect} from 'vue';
+import {defineProps} from 'vue';
 import './WordDisplay.scss';
 import Button from '@/components/ui/Button.vue';
+
 const props = defineProps({
   words: {
     type: Array,
@@ -25,27 +31,48 @@ const props = defineProps({
   }
 });
 
-const currentIndex = ref(0);
-const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '[]');
+const learnedWords = ref(JSON.parse(localStorage.getItem('learnedWords') || '[]'));
+const filteredWords = ref([]);
+const currentWord = ref(null);
+const isLoading = ref(false);
 
-const filteredWords = ref(props.words.filter(word =>
-    !learnedWords.some(learnedWord => learnedWord.en === word.en)
-));
+const updateCurrentWord = () => {
+  currentWord.value = filteredWords.value.length > 0 ? filteredWords.value[0] : null;
+};
 
-// Отображаем текущее слово
-const currentWord = ref(filteredWords.value[currentIndex.value] || null);
-const markAsLearned = () => {
-  if (currentWord.value) {
-    // Проверяем, если слово уже существует в локалсторе
-    const isAlreadyLearned = learnedWords.some(word => word.en === currentWord.value.en);
+watchEffect(() => {
+  filteredWords.value = props.words.filter(word =>
+      !learnedWords.value.some(learnedWord => learnedWord.en === word.en)
+  );
+  updateCurrentWord();
+});
 
-    if (!isAlreadyLearned) {
-      learnedWords.push(currentWord.value);
-      localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
-    }
-
-    currentIndex.value++;
-    currentWord.value = filteredWords.value[currentIndex.value] || null;
+const handleMarkAsLearned = () => {
+  if (currentWord.value && !isLoading.value) {
+    isLoading.value = true;
+    setTimeout(() => {
+      markAsLearned();
+      isLoading.value = false;
+    }, 1000); // Лоадер на 1 секунду
   }
 };
+
+const markAsLearned = () => {
+  console.log('markAsLearned called');
+  learnedWords.value.push(currentWord.value);
+  localStorage.setItem('learnedWords', JSON.stringify(learnedWords.value));
+
+  // Удаляем текущее слово из списка filteredWords
+  filteredWords.value.shift();
+
+  updateCurrentWord();
+};
 </script>
+
+<style scoped>
+.loader {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+</style>

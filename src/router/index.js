@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomePage from '@/views/HomePage/HomePage.vue'
 import LearnWordsPage from '@/views/LearnWordsPage/LearnWordsPage.vue'
 import ReviewWordsPage from "@/views/ReviewWordsPage/ReviewWordsPage.vue";
@@ -16,7 +16,7 @@ const routes = [
     },
     {
         path: '/review-words',
-        name:  'review-words-page',
+        name: 'review-words-page',
         component: ReviewWordsPage
     }
 ]
