@@ -6,8 +6,5 @@
 </template>
 
 <script setup>
+import './HomePage.scss';
 </script>
-
-<style>
-/* Добавьте свои стили */
-</style>

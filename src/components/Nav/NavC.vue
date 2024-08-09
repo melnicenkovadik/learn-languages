@@ -2,8 +2,8 @@
   <nav :class="['nav', { 'nav--mobile': isMobile }]">
     <ul>
       <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/learn-words">Learn</router-link></li>
+      <li><router-link to="/review-words">Review</router-link></li>
     </ul>
   </nav>
 </template>
