@@ -1,15 +1,17 @@
 // src/views/LearnWordsPage.vue
 <template>
-  <div>
-    <h2>LearnWordsPage</h2>
+  <div class="learn-words-page">
+    <h2>Learn Words</h2>
     <ul v-if="categories.length && !selectedCategory">
       <li v-for="category in categories" :key="category.value">
-        <button @click="selectedCategory = category.value">{{ category.label }}</button>
+        <CardC>
+          <Button variant="primary" size="large" @click="selectedCategory = category.value">{{ category.label }}</Button>
+        </CardC>
       </li>
     </ul>
-    <BackBtn @click="clearSelectedCategory" v-if="selectedCategory" />
+    <BackBtn @click="clearSelectedCategory" v-if="selectedCategory"/>
     <div v-if="selectedWords">
-      <WordDisplay :words="selectedWords" />
+      <WordDisplay :words="selectedWords"/>
     </div>
   </div>
 </template>
@@ -17,10 +19,13 @@
 <script setup>
 import BackBtn from '@/components/BackBtn/BackBtn.vue';
 import WordDisplay from '@/components/WordDisplay/WordDisplay.vue';
-import './LearnWordsPage.scss';
+import Button from '@/components/ui/Button.vue';
 
 import categories from '@/common/categories.js';
-import { ref, computed } from 'vue';
+import {ref, computed} from 'vue';
+
+import './LearnWordsPage.scss';
+import CardC from "@/components/ui/Card.vue";
 
 const selectedCategory = ref('');
 

@@ -1,11 +1,11 @@
 <!-- src/views/ReviewWordsPage.vue -->
 <template>
-  <div>
+  <div class="review-words-page">
     <h2>Review Learned Words</h2>
     <ul v-if="learnedWords.length">
       <li v-for="(word, index) in learnedWords" :key="word.en">
         {{ word.en }} - {{ word.it }} - {{ word.ru }}
-        <button @click="removeWord(index)">Удалить</button>
+        <Button variant="secondary" size="medium" @click="removeWord(index)">Удалить</Button>
       </li>
     </ul>
     <div v-else>
@@ -15,7 +15,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
+import Button from '@/components/ui/Button.vue';
 import './ReviewWordsPage.scss';
 
 const learnedWords = ref(JSON.parse(localStorage.getItem('learnedWords') || '[]'));

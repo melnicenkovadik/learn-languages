@@ -1,0 +1,43 @@
+.btn {
+  // reset default button styles
+  appearance: none; // appearance-none
+  border: none; // border-none
+  outline: none; // outline-none
+  cursor: pointer; // cursor-pointer
+
+  // styles
+  padding: 0.5rem 1rem; // px-4 py-2
+  font-weight: 600; // font-semibold
+  border-radius: 0.5rem; // rounded-lg
+  transition: all 0.3s; // transition-all duration-300
+
+  &--primary {
+    background-color: #3b82f6; // bg-blue-500
+    color: white; // text-white
+
+    &:hover {
+      background-color: #2563eb; // hover:bg-blue-600
+    }
+  }
+
+  &--secondary {
+    background-color: #6b7280; // bg-gray-500
+    color: white; // text-white
+
+    &:hover {
+      background-color: #4b5563; // hover:bg-gray-600
+    }
+  }
+
+  &--small {
+    font-size: 0.75rem; // text-xs
+  }
+
+  &--medium {
+    font-size: 0.875rem; // text-sm
+  }
+
+  &--large {
+    font-size: 1.125rem; // text-lg
+  }
+}

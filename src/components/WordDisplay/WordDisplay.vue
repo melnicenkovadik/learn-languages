@@ -2,7 +2,7 @@
 <template>
   <div v-if="currentWord">
     <p>{{ currentWord.en }} - {{ currentWord.it }} - {{ currentWord.ru }}</p>
-    <button @click="markAsLearned">Выучил</button>
+    <Button variant="primary" size="large" @click="markAsLearned">Выучил</Button>
   </div>
   <div v-else>
     <p>Вы выучили все слова!</p>
@@ -13,7 +13,7 @@
 import { ref } from 'vue';
 import { defineProps } from 'vue'
 import './WordDisplay.scss';
-
+import Button from '@/components/ui/Button.vue';
 const props = defineProps({
   words: {
     type: Array,
